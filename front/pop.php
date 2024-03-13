@@ -1,5 +1,19 @@
+<style>
+    .pop {
+        background: rgba(51, 51, 51, 0.8);
+        color: #FFF;
+        min-height: 100px;
+        width: 300px;
+        height: 300px;
+        position: fixed;
+        display: none;
+        z-index: 9999;
+        overflow: auto;
+        margin-top: -30px;
+    }
+</style>
 <fieldset>
-    <legend>目前位置:首頁>最新文章區</legend>
+    <legend>目前位置:首頁>人氣文章區</legend>
     <table>
         <tr>
             <th>標題</th>
@@ -21,9 +35,10 @@
                 </td>
                 <td>
                     <div id="s<?= $row['id']; ?>"><?= mb_substr($row['text'], 0, 20); ?>...</div>
-                    <pre style="display:none" id="a<?= $row['id']; ?>"><?= $row['text'] ?></pre>
+                    <pre class="pop" style="display:none" id="a<?= $row['id']; ?>"><h3 style="color:aqua"><?= $row['title']; ?></h3><?= $row['text'] ?></pre>
                 </td>
                 <td>
+                    <?= $row['good']; ?>個人說讚<a onclick="good(<?= $row['id']; ?>)"><img src="./icon/02B03.jpg" style="width:30px"></a>
                     <?php
                     if (isset($_SESSION['user'])) {
                         if ($Log->count(['news' => $row['id'], 'acc' => $_SESSION['user']]) > 0) {
@@ -57,14 +72,17 @@
     </div>
 </fieldset>
 <script>
-    $(".list").on('click', function() {
-        let id = $(this).data('id')
-        $("#a" + id, ).toggle()
-        $("#s" + id).toggle()
+$(".list").hover(function(){
+    let id=$(this).data('id')
+    $(".pop").hide()
+    $("#a"+id).show()
+})
 
-    })
-    function good(news){
-        $.post("./api/good.php",{news},()=>{
+    function good(news) {
+
+        $.post("./api/good.php", {
+            news
+        }, () => {
             location.reload()
         })
     }

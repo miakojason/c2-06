@@ -1,7 +1,11 @@
 <?php include_once "./db.php";
-$_POST['acc']=$_SESSION['user'];
-if($Log->count($_POST)>0){
+$_POST['acc'] = $_SESSION['user'];
+$row = $News->find($_POST['news']);
+if ($Log->count($_POST) > 0) {
     $Log->del($_POST);
-}else{
+    $row['good']--;
+} else {
     $Log->save($_POST);
+    $row['good']++; 
 }
+$News->save($row);
