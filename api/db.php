@@ -135,6 +135,6 @@ if (!isset($_SESSION['visited'])) {
         $Total->save($row);
     } else {
         $Total->save(['date' => date("Y-m-d"),'total'=>1]);
-        $_SESSION['visited'] = 1;
     }
+    $_SESSION['visited'] = 1;
 }
