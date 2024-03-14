@@ -15,7 +15,6 @@
                     <td><?= $row['acc']; ?></td>
                     <td><?= $row['pw']; ?></td>
                     <td>
-                        <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                         <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                     </td>
                 </tr>
