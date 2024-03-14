@@ -18,10 +18,10 @@
             <tr>
                 <td class="clo"><?= $idx + 1+$start; ?></td>
                 <td><?= $row['title']; ?></td>
-                <td><input type="checkbox" name="sh[]" value="<? $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>></td>
+                <td><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>></td>
                 <td>
-                    <input type="hidden" name="id[]" value="<? $row['id']; ?>">
-                    <input type="checkbox" name="del[]" value="<? $row['']; ?>">
+                    <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                    <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                 </td>
             </tr>
         <?php
